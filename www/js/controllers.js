@@ -45,4 +45,29 @@ angular.module('main.controllers', [])
 })
 
 .controller('PlaylistCtrl', function($scope, $stateParams) {
-});
+})
+
+.controller('EditorCtrl', ['$scope', '$http', function($scope, $http){
+
+        $scope.code = '';
+        $scope.input = '';
+        $scope.suggest = '';
+
+        var url = "http://localhost:9000/suggest?";
+
+        $scope.getSuggestions = function(){
+            var context = $scope.code + "\n" + $scope.input;
+            $http.get(url + querystring.stringify({code: context}))
+                .success(function(res){
+                    $scope.suggest = JSON.stringify(res, null, 2);
+                });
+        };
+
+        $scope.addToCode = function(){
+
+            $scope.code += '\n' + $scope.input;
+            $scope.input = '';
+            $scope.suggest = '';
+        }
+    }]
+);

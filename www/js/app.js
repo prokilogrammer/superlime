@@ -65,8 +65,18 @@ angular.module('superlime', ['ionic', 'main.controllers'])
           controller: 'PlaylistCtrl'
         }
       }
+    })
+
+    .state('app.editor', {
+        url: '/editor',
+        views: {
+            'menuContent': {
+                templateUrl: "templates/editor.html",
+                controller: 'EditorCtrl'
+            }
+        }
     });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/playlists');
+  $urlRouterProvider.otherwise('/app/editor');
 });
 

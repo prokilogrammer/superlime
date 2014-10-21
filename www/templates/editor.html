@@ -1,0 +1,24 @@
+<ion-view title="Editor">
+    <ion-content>
+        <div class="row">
+            <pre>
+                {{code}}
+            </pre>
+        </div>
+
+        <div class="row">
+            {{ suggest }}
+        </div>
+    </ion-content>
+
+    <div class="bar bar-footer">
+        <div class="row item-input-inset">
+            <label class="item-input-wrapper">
+                <textarea type="search" placeholder="Type code here.." ng-model="input" ng-change="getSuggestions()"></textarea>
+            </label>
+            <button class="button button-small" ng-click="addToCode()">
+                Submit
+            </button>
+        </div>
+    </div>
+</ion-view>
