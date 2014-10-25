@@ -53,7 +53,7 @@ angular.module('main.controllers', [])
         $scope.input = '';
         $scope.suggest = '';
 
-        var url = "http://localhost:9000/suggest?";
+        var url = "http://superlime-jedi.herokuapp.com/suggest?";
 
         $scope.getSuggestions = function(){
             var context = $scope.code + "\n" + $scope.input;
