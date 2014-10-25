@@ -59,8 +59,13 @@ angular.module('main.controllers', [])
             var context = $scope.code + "\n" + $scope.input;
             $http.get(url + querystring.stringify({code: context}))
                 .success(function(res){
-                    $scope.suggest = JSON.stringify(res, null, 2);
+                    $scope.suggest = res;
                 });
+        };
+
+        $scope.addToInput = function(suggestion){
+            $scope.input += suggestion.complete;
+            $scope.getSuggestions();
         };
 
         $scope.addToCode = function(){
@@ -68,6 +73,7 @@ angular.module('main.controllers', [])
             $scope.code += '\n' + $scope.input;
             $scope.input = '';
             $scope.suggest = '';
+            document.getElementById('codeInput').focus();
         }
     }]
 );

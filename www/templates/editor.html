@@ -7,14 +7,16 @@
         </div>
 
         <div class="row">
-            {{ suggest }}
+            <button class="button button-dark" ng-repeat="s in suggest track by $index" ng-click="addToInput(s)" ng-show="s.complete">
+                {{ s.name }}
+            </button>
         </div>
     </ion-content>
 
     <div class="bar bar-footer">
         <div class="row item-input-inset">
             <label class="item-input-wrapper">
-                <textarea type="search" placeholder="Type code here.." ng-model="input" ng-change="getSuggestions()"></textarea>
+                <textarea type="search" placeholder="Type code here.." ng-model="input" ng-change="getSuggestions()" id="codeInput"></textarea>
             </label>
             <button class="button button-small" ng-click="addToCode()">
                 Submit
