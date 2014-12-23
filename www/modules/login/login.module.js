@@ -5,10 +5,10 @@ angular.module('login.module', [])
 
         // Navigate to appropriate state when the user is already logged-in
         if (user){
-            $state.go('user.home');
+            $state.go('user.home.filepicker');
         }
         else {
-            $state.go('usercheck.login');
+            $state.go('user.login');
         }
     }])
 
@@ -18,11 +18,13 @@ angular.module('login.module', [])
 
         $scope.login = function(provider) {
 
-            // FIXME: May be this needs to be directive. We can access ui-sref on element and let the browser navigate to destn page automatically instead of $state.go
+            $scope.status = "starting login";
+
+            // FIXME: Try to get rid of $state.go here. It is hacky
             LoginService.login(provider)
                 .then(function (user) {
                     $scope.status = null;
-                    $state.go('user.home');
+                    $state.go('user.home.filepicker');
                 },
                 function (err) {
                     $scope.status = "Unable to login. Please try again. Error: " + err;
@@ -31,23 +33,25 @@ angular.module('login.module', [])
 
     }])
 
-.factory('LoginService', ['$http', 'ConfigVars', function($http, ConfigVars){
+.factory('LoginService', ['$http', '$q', '$ionicPlatform', 'ConfigVars', function($http, $q, $ionicPlatform, ConfigVars){
 
         var user = null;
 
         // Initialize the OAuth library when factory is loaded
-        ionic.Platform.ready(function(){
-            OAuth.initialize(ConfigVars.OAuthIOKey);
-        });
+        // FIXME: For some reason, the callback doesn't get called. Until then initialization will be hardcoded in index.html
+//        $ionicPlatform.ready(function(){
+//            OAuth.initialize(ConfigVars.OAuthIOKey);
+//        });
 
         var createUser = function(providerName, authedClient, deferred){
 
             user = {
-                auth_token: authedClient
+                access_token: authedClient.access_token
             };
 
             authedClient.me()
                 .done(function(resp){
+                    console.log("Auth Resp: " + JSON.stringify(resp, null, 2));
                     _.merge(user, resp);
                     deferred.resolve(user);
                 })
@@ -61,8 +65,6 @@ angular.module('login.module', [])
         return {
             login: function(provider, force){
 
-                console.log("Logging in via " + provider);
-
                 var deferred = $q.defer();
                 if (user && !force){
                     deferred.resolve(user);
@@ -73,7 +75,7 @@ angular.module('login.module', [])
                 OAuth.popup(provider, {cache: true})
                     .done(function(result){
                         console.log("Login success");
-                        setUser(provider, result, deferred);
+                        createUser(provider, result, deferred);
                     })
                     .fail(function(err){
                         console.log("Login failure: " + err);

@@ -10,21 +10,34 @@
     <link href="css/ionic.app.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
+    <script src="lib/lodash/dist/lodash.js"></script>
+
     <!-- ionic/angularjs js -->
     <script src="lib/ionic/js/ionic.bundle.js"></script>
 
     <script src="lib/querystring/querystring.js"></script>
 
-    <script src="lib/github-api/lib/underscore-min.js"></script>
+    <!--<script src="lib/github-api/lib/underscore-min.js"></script>-->
     <script src="lib/github-api/github.js"></script>
 
-    <!-- your app's js -->
+   <!-- your app's js -->
     <script src="js/app.js"></script>
+    <script src="modules/common/common.services.js"></script>
     <script src="modules/login/login.module.js"></script>
     <script src="modules/config/config.module.js"></script>
+    <script src="modules/filepicker/filepicker.module.js"></script>
 
     <!-- cordova script (this will be a 404 during development) -->
     <script src="cordova.js"></script>
+
+
+      <script>
+          // FIXME: Temporary hack until $ionicPlatform.ready works
+          ionic.Platform.ready(function(){
+              var OAuthIoPublicKey = "c3YzgYib6SdcN21TzMKw2sAOwow";
+              OAuth.initialize(OAuthIoPublicKey);
+          })
+      </script>
 
   </head>
 

@@ -6,8 +6,10 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('superlime', [
     'ionic',
+    'common.module',
     'login.module',
-    'config.module'])
+    'config.module',
+    'filepicker.module'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -30,7 +32,7 @@ angular.module('superlime', [
 
     // States are organized as per the organization explained here -  http://www.frederiknakstad.com/2014/02/09/ui-router-in-angular-client-side-auth/
     $stateProvider
-        .state('usercheck', {
+        .state('user', {
             url: "/",
             abstract: true,
             template: "<ion-nav-view></ion-nav-view>",
@@ -42,17 +44,37 @@ angular.module('superlime', [
             }
         })
 
-        .state('usercheck.login', {
+        .state('user.login', {
             url: "",
             templateUrl: "modules/login/login.view.html",
             controller: 'LoginController'
         })
-//
-//        .state('user.home', {
-//          url: "/user",
-//          templateUrl: "modules/base/base.view.html",
-//          controller: 'BaseController'
-//        })
+
+        .state('user.home', {
+            abstract: true,
+            url: "/user",
+            templateUrl: "modules/filepicker/filepicker.view.html"
+        })
+
+        .state('user.home.filepicker', {
+          url: "filepicker/:orgname",
+          views: {
+              'repoListView': {
+                  templateUrl: "modules/filepicker/filepicker.repoview.html",
+                  controller: "FilePickerRepoController",
+                  resolve: {
+                      orgname: ['$stateParams', function($stateParams){
+                        return $stateParams.orgname ? $stateParams.orgname : '';
+                      }]
+                  }
+              },
+
+              'origListView': {
+                  templateUrl: "modules/filepicker/filepicker.orgview.html",
+                  controller: "FilePickerOrgController"
+              }
+          }
+        })
 
 //    .state('app.search', {
 //      url: "/search",
