@@ -4,7 +4,10 @@
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
 // 'starter.controllers' is found in controllers.js
-angular.module('superlime', ['ionic', 'main.controllers'])
+angular.module('superlime', [
+    'ionic',
+    'login.module',
+    'config.module'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -24,62 +27,80 @@ angular.module('superlime', ['ionic', 'main.controllers'])
 
     $sceDelegateProvider.resourceUrlWhitelist(['self', 'https://oauth.io/**', 'https://api.github.com/**', 'https://www.github.com/**']);
 
-  $stateProvider
 
-    .state('app', {
-      url: "/app",
-      abstract: true,
-      templateUrl: "templates/menu.html",
-      controller: 'AppCtrl'
-    })
-
-    .state('app.search', {
-      url: "/search",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/search.html"
-        }
-      }
-    })
-
-    .state('app.browse', {
-      url: "/browse",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/browse.html"
-        }
-      }
-    })
-    .state('app.playlists', {
-      url: "/playlists",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlists.html",
-          controller: 'PlaylistsCtrl'
-        }
-      }
-    })
-
-    .state('app.single', {
-      url: "/playlists/:playlistId",
-      views: {
-        'menuContent' :{
-          templateUrl: "templates/playlist.html",
-          controller: 'PlaylistCtrl'
-        }
-      }
-    })
-
-    .state('app.editor', {
-        url: '/editor',
-        views: {
-            'menuContent': {
-                templateUrl: "templates/editor.html",
-                controller: 'EditorCtrl'
+    // States are organized as per the organization explained here -  http://www.frederiknakstad.com/2014/02/09/ui-router-in-angular-client-side-auth/
+    $stateProvider
+        .state('usercheck', {
+            url: "/",
+            abstract: true,
+            template: "<ion-nav-view></ion-nav-view>",
+            controller: 'LoginCheckRedirectController',
+            resolve: {
+                user: ['LoginService', function(LoginService){
+                    return LoginService.getUser();
+                }]
             }
-        }
-    });
+        })
+
+        .state('usercheck.login', {
+            url: "",
+            templateUrl: "modules/login/login.view.html",
+            controller: 'LoginController'
+        })
+//
+//        .state('user.home', {
+//          url: "/user",
+//          templateUrl: "modules/base/base.view.html",
+//          controller: 'BaseController'
+//        })
+
+//    .state('app.search', {
+//      url: "/search",
+//      views: {
+//        'menuContent' :{
+//          templateUrl: "templates/search.html"
+//        }
+//      }
+//    })
+//
+//    .state('app.browse', {
+//      url: "/browse",
+//      views: {
+//        'menuContent' :{
+//          templateUrl: "templates/browse.html"
+//        }
+//      }
+//    })
+//    .state('app.playlists', {
+//      url: "/playlists",
+//      views: {
+//        'menuContent' :{
+//          templateUrl: "templates/playlists.html",
+//          controller: 'PlaylistsCtrl'
+//        }
+//      }
+//    })
+//
+//    .state('app.single', {
+//      url: "/playlists/:playlistId",
+//      views: {
+//        'menuContent' :{
+//          templateUrl: "templates/playlist.html",
+//          controller: 'PlaylistCtrl'
+//        }
+//      }
+//    })
+//
+//    .state('app.editor', {
+//        url: '/editor',
+//        views: {
+//            'menuContent': {
+//                templateUrl: "templates/editor.html",
+//                controller: 'EditorCtrl'
+//            }
+//        }
+//    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/app/editor');
+  $urlRouterProvider.otherwise('/');
 });
 

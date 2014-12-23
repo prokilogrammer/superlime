@@ -1,0 +1,18 @@
+<ion-header-bar>
+    <h1 class="title"> Superlime </h1>
+</ion-header-bar>
+
+<ion-content class="stable-bg center" scroll="false">
+
+    <div class="row">
+        <div class="col" style="text-align: center">
+            <h3 padding-bottom> Welcome to Superlime </h3>
+            <h4 padding-bottom> {{ status || "Please login first"}} </h4>
+            <button class="button button-energized" ng-click="login('github')">
+                <i class="icon ion-social-github"></i>
+                Login with GitHub
+            </button>
+        </div>
+    </div>
+
+</ion-content>

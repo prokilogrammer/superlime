@@ -75,19 +75,5 @@ angular.module('main.controllers', [])
             $scope.suggest = '';
             document.getElementById('codeInput').focus();
         };
-
-        $scope.githubLogin = function(){
-
-            OAuth.popup('github', {
-                cache: true
-            })
-                .done(function(result){
-                    console.log(result);
-                    console.log("Access token: ", result.access_token);
-                })
-                .fail(function(err){
-                    console.log("ERROR!! ", err);
-                })
-        }
     }]
 );
