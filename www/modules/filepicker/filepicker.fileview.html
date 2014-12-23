@@ -1,0 +1,16 @@
+<ion-view title="{{repoName}} : {{ path }}">
+
+    <ion-content>
+
+        <ion-list ng-show="dirContents.length > 0">
+            <ion-item ng-repeat="item in dirContents" ui-sref="{{ item.sref }}">
+                <i class="icon" ng-class="item.folder ? 'ion-folder' : 'ion-document'"></i>
+                {{ item.name }}
+            </ion-item>
+        </ion-list>
+
+        <h4 ng-show="dirContents == 0"> Directory has no contents </h4>
+
+    </ion-content>
+
+</ion-view>

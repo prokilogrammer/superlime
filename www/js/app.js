@@ -53,27 +53,39 @@ angular.module('superlime', [
         .state('user.home', {
             abstract: true,
             url: "/user",
-            templateUrl: "modules/filepicker/filepicker.view.html"
+            templateUrl: "modules/filepicker/filepicker.view.html",
+            resolve: {
+                // If user had to login fresh, user object inherited from parent scope will be null. Refresh it.
+                user: ['LoginService', function(LoginService){
+                    return LoginService.getUser();
+                }]
+            }
+        })
+
+        .state('user.home.repopicker', {
+              url: "/repopicker/:orgname",
+              templateUrl: "modules/filepicker/filepicker.repoview.html",
+              controller: "FilePickerRepoController",
+              resolve: {
+                  orgname: ['$stateParams', function($stateParams){
+                    return $stateParams.orgname ? $stateParams.orgname : '';
+                  }]
+              }
         })
 
         .state('user.home.filepicker', {
-          url: "filepicker/:orgname",
-          views: {
-              'repoListView': {
-                  templateUrl: "modules/filepicker/filepicker.repoview.html",
-                  controller: "FilePickerRepoController",
-                  resolve: {
-                      orgname: ['$stateParams', function($stateParams){
-                        return $stateParams.orgname ? $stateParams.orgname : '';
-                      }]
-                  }
-              },
+              url: "/filepicker/:reponame/{path:.*}",
+              templateUrl: "modules/filepicker/filepicker.fileview.html",
+              controller: "FilePickerFileController",
+              resolve: {
+                  path: ['$stateParams', function($stateParams){
+                    return $stateParams.path ? $stateParams.path : '';
+                  }],
 
-              'origListView': {
-                  templateUrl: "modules/filepicker/filepicker.orgview.html",
-                  controller: "FilePickerOrgController"
+                  reponame: ['$stateParams', function($stateParams){
+                    return $stateParams.reponame ? $stateParams.reponame : '';
+                  }]
               }
-          }
         })
 
 //    .state('app.search', {

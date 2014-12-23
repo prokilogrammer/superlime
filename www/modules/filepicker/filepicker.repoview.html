@@ -1,4 +1,14 @@
-<h1> REPOVIEW </h1>
-<div ng-repeat="repo in repos">
-   <h2> {{ repo.name }}</h2>
-</div>
+<ion-view title="Choose a repository">
+
+    <ion-content>
+        <!--<select ng-options="orgs[ix] as org for org in orgs" ng-model="selectedOrg" ng-change="orgChanged()"> </select>-->
+
+        <ion-list>
+            <ion-item ng-repeat="repo in repos" ui-sref="user.home.filepicker({reponame: repo.name})">
+                {{ repo.name }}
+            </ion-item>
+
+        </ion-list>
+    </ion-content>
+
+</ion-view>

@@ -5,7 +5,7 @@ angular.module('login.module', [])
 
         // Navigate to appropriate state when the user is already logged-in
         if (user){
-            $state.go('user.home.filepicker');
+            $state.go('user.home.repopicker');
         }
         else {
             $state.go('user.login');
@@ -24,7 +24,7 @@ angular.module('login.module', [])
             LoginService.login(provider)
                 .then(function (user) {
                     $scope.status = null;
-                    $state.go('user.home.filepicker');
+                    $state.go('user.home.repopicker');
                 },
                 function (err) {
                     $scope.status = "Unable to login. Please try again. Error: " + err;
@@ -40,7 +40,7 @@ angular.module('login.module', [])
         // Initialize the OAuth library when factory is loaded
         // FIXME: For some reason, the callback doesn't get called. Until then initialization will be hardcoded in index.html
 //        $ionicPlatform.ready(function(){
-//            OAuth.initialize(ConfigVars.OAuthIOKey);
+            OAuth.initialize(ConfigVars.OAuthIOKey);
 //        });
 
         var createUser = function(providerName, authedClient, deferred){
@@ -49,9 +49,11 @@ angular.module('login.module', [])
                 access_token: authedClient.access_token
             };
 
+            console.log(authedClient.access_token);
+
             authedClient.me()
                 .done(function(resp){
-                    console.log("Auth Resp: " + JSON.stringify(resp, null, 2));
+                    user['username'] = resp.raw.login;
                     _.merge(user, resp);
                     deferred.resolve(user);
                 })
@@ -87,6 +89,7 @@ angular.module('login.module', [])
             },
 
             getUser: function(){
+                console.log(user);
                 return user;
             }
         }

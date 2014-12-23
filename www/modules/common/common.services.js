@@ -31,7 +31,7 @@ angular.module('common.module', [])
                     deferred.resolve(repos);
                 });
 
-                return deferred.promise();
+                return deferred.promise;
             },
 
             getOrgs: function(user){
@@ -46,8 +46,23 @@ angular.module('common.module', [])
                     deferred.resolve(orgs);
                 });
 
-                return deferred.promise();
+                return deferred.promise;
 
+            },
+
+            getRepoContents: function(user, reponame, branch, path){
+                var github = init(user);
+                var repo = github.getRepo(user.username, reponame);
+
+                var deferred = $q.defer();
+                repo.contents(branch, path, function(err, contents){
+
+                    if (err) return deferred.reject({err: err});
+
+                    deferred.resolve(contents);
+                });
+
+                return deferred.promise;
             }
         }
 
