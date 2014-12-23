@@ -27,7 +27,7 @@ angular.module('login.module', [])
                     $state.go('user.home.repopicker');
                 },
                 function (err) {
-                    $scope.status = "Unable to login. Please try again. Error: " + err;
+                    $scope.status = "Unable to login. Please try again. Error: " + JSON.stringify(err, null, 2);
                 });
         }
 

@@ -33,16 +33,16 @@
     <!-- FIXME: Since OAuth.js is a Cordova plugin, it won't be loaded when testing in browser.
         Uncomment following line to load the JS library instead.
      -->
-    <script src="lib/oauth-js/dist/oauth.js"></script>
+    <!--<script src="lib/oauth-js/dist/oauth.js"></script>-->
 
-      <!---->
-      <!--<script>-->
-          <!--// FIXME: Temporary hack until $ionicPlatform.ready works-->
-          <!--ionic.Platform.ready(function(){-->
-              <!--var OAuthIoPublicKey = "c3YzgYib6SdcN21TzMKw2sAOwow";-->
-              <!--OAuth.initialize(OAuthIoPublicKey);-->
-          <!--})-->
-      <!--</script>-->
+
+      <script>
+          // FIXME: Temporary hack until $ionicPlatform.ready works
+          ionic.Platform.ready(function(){
+              var OAuthIoPublicKey = "c3YzgYib6SdcN21TzMKw2sAOwow";
+              OAuth.initialize(OAuthIoPublicKey);
+          })
+      </script>
 
   </head>
 
