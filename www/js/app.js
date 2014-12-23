@@ -20,7 +20,10 @@ angular.module('superlime', ['ionic', 'main.controllers'])
   });
 })
 
-.config(function($stateProvider, $urlRouterProvider) {
+.config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
+
+    $sceDelegateProvider.resourceUrlWhitelist(['self', 'https://oauth.io/**', 'https://api.github.com/**', 'https://www.github.com/**']);
+
   $stateProvider
 
     .state('app', {
