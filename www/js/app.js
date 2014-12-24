@@ -6,10 +6,12 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('superlime', [
     'ionic',
+    'ui.ace',
     'common.module',
     'login.module',
     'config.module',
-    'filepicker.module'])
+    'filepicker.module',
+    'editor.module'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -77,6 +79,22 @@ angular.module('superlime', [
               url: "/filepicker/:reponame/{path:.*}",
               templateUrl: "modules/filepicker/filepicker.fileview.html",
               controller: "FilePickerFileController",
+              resolve: {
+                  path: ['$stateParams', function($stateParams){
+                    return $stateParams.path ? $stateParams.path : '';
+                  }],
+
+                  reponame: ['$stateParams', function($stateParams){
+                    return $stateParams.reponame ? $stateParams.reponame : '';
+                  }]
+              }
+        })
+
+
+        .state('user.home.editor', {
+              url: "/editor/:reponame/{path:.*}",
+              templateUrl: "modules/editor/editor.view.html",
+              controller: "EditorViewController",
               resolve: {
                   path: ['$stateParams', function($stateParams){
                     return $stateParams.path ? $stateParams.path : '';

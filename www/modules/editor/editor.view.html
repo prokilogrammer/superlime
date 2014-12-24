@@ -1,0 +1,19 @@
+<ion-nav-bar class="bar-energized nav-title-slide-ios7">
+    <ion-nav-back-button class="button-clear">
+        <i class="ion-arrow-left-c"></i> Back
+    </ion-nav-back-button>
+</ion-nav-bar>
+
+<ion-view title="{{repoName}} : {{ path }}">
+
+    <ion-content scroll="false">
+
+        <div ui-ace="{onLoad: editorLoaded, onChange: editorChanged}" ng-model="code">
+        </div>
+
+    </ion-content>
+
+</ion-view>
+
+
+

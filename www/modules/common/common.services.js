@@ -63,6 +63,21 @@ angular.module('common.module', [])
                 });
 
                 return deferred.promise;
+            },
+
+            getFileContents: function(user, reponame, branch, path){
+                var github = init(user);
+                var repo = github.getRepo(user.username, reponame);
+
+                var deferred = $q.defer();
+                repo.read(branch, path, function(err, contents){
+
+                    if (err) return deferred.reject({err: err});
+
+                    deferred.resolve(contents);
+                });
+
+                return deferred.promise;
             }
         }
 

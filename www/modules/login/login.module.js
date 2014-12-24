@@ -40,7 +40,7 @@ angular.module('login.module', [])
         // Initialize the OAuth library when factory is loaded
         // FIXME: For some reason, the callback doesn't get called. Until then initialization will be hardcoded in index.html
 //        $ionicPlatform.ready(function(){
-            OAuth.initialize(ConfigVars.OAuthIOKey);
+//            OAuth.initialize(ConfigVars.OAuthIOKey);
 //        });
 
         var createUser = function(providerName, authedClient, deferred){

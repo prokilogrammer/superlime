@@ -29,3 +29,5 @@
     -ms-flex-align: center;
     align-items: center;
 }
+
+.ace_editor { height: 600px; }
