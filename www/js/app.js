@@ -106,6 +106,13 @@ angular.module('superlime', [
               }
         })
 
+
+        .state('editortest', {
+              url: "/editortest",
+              templateUrl: "modules/editor/editor.view.html",
+              controller: "EditorTestViewController"
+        })
+
 //    .state('app.search', {
 //      url: "/search",
 //      views: {
@@ -153,6 +160,6 @@ angular.module('superlime', [
 //        }
 //    });
   // if none of the above states are matched, use this as the fallback
-  $urlRouterProvider.otherwise('/');
+  $urlRouterProvider.otherwise('/editortest');
 });
 
