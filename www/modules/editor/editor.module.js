@@ -48,22 +48,8 @@ angular.module('editor.module', [])
 
     .controller('EditorTestViewController', ['$scope', '$http', function($scope, $http){
 
-        $http.get("https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.1/js/bootstrap.js")
-            .success(function(data, status, header, config){
-                $scope.code = data;
-            });
+        $scope.code = "import json\nobj = json.loa";
 
-        $scope.editorLoaded = function(_editor){
-
-            _editor.getSession().setMode('ace/mode/javascript');
-            _editor.setTheme('ace/theme/twilight');
-
-            console.log('Editor loaded');
-        };
-
-        $scope.editorChanged = function(_editor){
-
-        }
     }]);
 //
 //    .directive('editor', ['$rootScope', function($rootScope){

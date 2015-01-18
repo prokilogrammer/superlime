@@ -31,3 +31,47 @@
 }
 
 .ace_editor { height: 600px; }
+
+.flex {
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    -webkit-flex-direction: column;
+    height: 100%
+}
+
+.codearea {
+    flex: 1;
+    -webkit-flex: 1;
+    font-size: 20px;
+    font-family: "Times New Roman";
+    font-weight: 300;
+}
+
+.keyboard {
+    flex: 0 0 30%;
+    -webkit-flex: 0 0 30%;
+}
+
+.btn {
+    cursor: pointer;
+    background-color: #cfcdd1;
+    text-align: center;
+    vertical-align: top;
+    display: inline-block;
+    color: black;
+    padding: 5px;
+    border: 2px solid #8e8e8e;
+    font-size: 16px;
+    font-weight: 500;
+    margin: 5px;
+    max-width: 80px;
+}
+
+.btn:last-child, .btn:first-child {
+    max-width: 100%
+}
+
+.content > .scroll {
+    height: 100%;
+}
