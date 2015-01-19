@@ -11,47 +11,93 @@
         <div class="flex">
             <textarea readonly placeholder="Type your code here" class="codearea" ng-model="code"> </textarea>
 
-            <div class="keyboard">
 
-                <div class="row">
-                    <div class="col btn">1</div>
-                    <div class="col btn">2</div>
-                    <div class="col btn">3</div>
-                    <div class="col btn">4</div>
-                    <div class="col btn">5</div>
-                    <div class="col btn">6</div>
-                    <div class="col btn">7</div>
-                    <div class="col btn">8</div>
-                    <div class="col btn">9</div>
-                    <div class="col btn">0</div>
-                </div>
+            <keyboard type="default" handler="keyboardHandler(char)"></keyboard>
 
-                <div class="row">
-                    <div class="col btn">q</div>
-                    <div class="col btn">w</div>
-                    <div class="col btn">e</div>
-                    <div class="col btn">r</div>
-                    <div class="col btn">t</div>
-                    <div class="col btn">y</div>
-                    <div class="col btn">u</div>
-                    <div class="col btn">i</div>
-                    <div class="col btn">o</div>
-                    <div class="col btn">p</div>
-                </div>
+            <!--<div class="keyboard">-->
+
+                <!--<div class="keyboard-view" ng-class="{hidden: view != 1}">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">1</div>-->
+                        <!--<div class="col btn">2</div>-->
+                        <!--<div class="col btn">3</div>-->
+                        <!--<div class="col btn">4</div>-->
+                        <!--<div class="col btn">5</div>-->
+                        <!--<div class="col btn">6</div>-->
+                        <!--<div class="col btn">7</div>-->
+                        <!--<div class="col btn">8</div>-->
+                        <!--<div class="col btn">9</div>-->
+                        <!--<div class="col btn">0</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">q</div>-->
+                        <!--<div class="col btn">w</div>-->
+                        <!--<div class="col btn">e</div>-->
+                        <!--<div class="col btn">r</div>-->
+                        <!--<div class="col btn">t</div>-->
+                        <!--<div class="col btn">y</div>-->
+                        <!--<div class="col btn">u</div>-->
+                        <!--<div class="col btn">i</div>-->
+                        <!--<div class="col btn">o</div>-->
+                        <!--<div class="col btn">p</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">a</div>-->
+                        <!--<div class="col btn">s</div>-->
+                        <!--<div class="col btn">d</div>-->
+                        <!--<div class="col btn">f</div>-->
+                        <!--<div class="col btn">g</div>-->
+                        <!--<div class="col btn">h</div>-->
+                        <!--<div class="col btn">j</div>-->
+                        <!--<div class="col btn">k</div>-->
+                        <!--<div class="col btn">l</div>-->
+                        <!--<div class="col btn" ng-click="view = 2"> VIEW 2 </div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
 
-                <div class="row">
-                    <div class="col btn">a</div>
-                    <div class="col btn">s</div>
-                    <div class="col btn">d</div>
-                    <div class="col btn">f</div>
-                    <div class="col btn">g</div>
-                    <div class="col btn">h</div>
-                    <div class="col btn">j</div>
-                    <div class="col btn">k</div>
-                    <div class="col btn">l</div>
-                    <div class="col btn">;</div>
-                </div>
+                <!--<div class="keyboard-view" ng-class="{hidden: view != 2}">-->
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">a</div>-->
+                        <!--<div class="col btn">s</div>-->
+                        <!--<div class="col btn">d</div>-->
+                        <!--<div class="col btn">f</div>-->
+                        <!--<div class="col btn">g</div>-->
+                        <!--<div class="col btn">h</div>-->
+                        <!--<div class="col btn">j</div>-->
+                        <!--<div class="col btn">k</div>-->
+                        <!--<div class="col btn">l</div>-->
+                        <!--<div class="col btn">;</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">q</div>-->
+                        <!--<div class="col btn">w</div>-->
+                        <!--<div class="col btn">e</div>-->
+                        <!--<div class="col btn">r</div>-->
+                        <!--<div class="col btn">t</div>-->
+                        <!--<div class="col btn">y</div>-->
+                        <!--<div class="col btn">u</div>-->
+                        <!--<div class="col btn">i</div>-->
+                        <!--<div class="col btn">o</div>-->
+                        <!--<div class="col btn">p</div>-->
+                    <!--</div>-->
+
+                    <!--<div class="row">-->
+                        <!--<div class="col btn">1</div>-->
+                        <!--<div class="col btn">2</div>-->
+                        <!--<div class="col btn">3</div>-->
+                        <!--<div class="col btn">4</div>-->
+                        <!--<div class="col btn">5</div>-->
+                        <!--<div class="col btn">6</div>-->
+                        <!--<div class="col btn">7</div>-->
+                        <!--<div class="col btn">8</div>-->
+                        <!--<div class="col btn">9</div>-->
+                        <!--<div class="col btn" ng-click="view = 1"> VIEW 1 </div>-->
+                    <!--</div>-->
+                <!--</div>-->
 
             </div>
         </div>

@@ -32,6 +32,10 @@
 
 .ace_editor { height: 600px; }
 
+.hidden {
+    display: none;
+}
+
 .flex {
     display: flex;
     display: -webkit-flex;
@@ -51,6 +55,12 @@
 .keyboard {
     flex: 0 0 30%;
     -webkit-flex: 0 0 30%;
+}
+
+.keyboard-view {
+    flex: 1;
+    -webkit-flex: 1;
+    height: 100%;
 }
 
 .btn {
