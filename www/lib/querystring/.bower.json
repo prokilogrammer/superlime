@@ -1,6 +1,6 @@
 {
   "name": "querystring",
-  "version": "3.24.10",
+  "version": "3.46.1",
   "main": "querystring.min.js",
   "description": "'querystring' nodejs core module browserify-ied with `--standalone querystring`. Should support all module systems (commonjs, AMD & `window.querystring`) - check browserify docs.",
   "keywords": [
@@ -9,14 +9,14 @@
     "querystring"
   ],
   "homepage": "https://github.com/anodynos/node2web_querystring",
-  "_release": "3.24.10",
+  "_release": "3.46.1",
   "_resolution": {
     "type": "version",
-    "tag": "3.24.10",
-    "commit": "463d51f8e38c38487b93305902abbf2440068a94"
+    "tag": "3.46.1",
+    "commit": "7396748a4d49c19165146d17229f4a4593f75851"
   },
   "_source": "git://github.com/anodynos/node2web_querystring.git",
-  "_target": "~3.24.10",
+  "_target": "~3.46.1",
   "_originalSource": "querystring",
   "_direct": true
 }

@@ -2,10 +2,20 @@
   "name": "superlime",
   "private": "true",
   "devDependencies": {
-    "ionic": "driftyco/ionic-bower#1.0.0-beta.13",
+    "ionic": "driftyco/ionic-bower#1.0.0-beta.14-nightly-960",
     "lodash": "~2.4.1",
     "oauth-js": "~0.3.0",
-    "ace-builds": "~1.1.8",
-    "angular-ui-ace": "~0.1.1"
+    "codemirror": "~4.11.0",
+    "collide": "~0.0.4",
+    "fontawesome": "~4.2.0",
+    "github-api": "~0.10.3",
+    "querystring": "~3.46.1"
+
+  },
+  "resolutions": {
+    "angular-ui-router": "0.2.13",
+    "codemirror": "~4.11.0",
+    "collide": "1.0.0-beta.3",
+    "querystring": "~3.46.1"
   }
 }
