@@ -4,6 +4,7 @@
 
 - [_Code on Mobile_](https://github.com/dai-shi/codeonmobile): One-off, personal use project
 -  [_Orion from Eclipse_](https://www.eclipse.org/orion/): Big project integrating Github and CI tools made by Eclipse. Used in CodeAcademy for their mobile site.
+- [_CodeAnywhere_](https://codeanywhere.com): End-to-End suite capabilities to create a dev box on the cloud, edit files thru web, tablet and mobile apps. Their editor is decent **with custom keys** in the keyboard for quicker access to symbols and arrow keys. Poor integration with Github, but good integration with Dropbox and other cloud storage services. This is the closest we have to Superlime, but their focus seems to be on an end-to-end platform rather than a killer editor.
 
 ## Code editor for web:
 
