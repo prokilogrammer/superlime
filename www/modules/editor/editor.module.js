@@ -54,6 +54,7 @@ angular.module('editor.module', [])
 
         $scope.keyboardHandler = function(char){
             console.log("Handler called " , char);
+            $scope.code += char;
         }
 
     }])
@@ -85,7 +86,14 @@ angular.module('editor.module', [])
                 _.forEach(lines, function(line){
                     var lineEl = angular.element('<div class="row"></div>');
                     _.forEach(line, function(key){
-                        var keyEl = angular.element(_.template("<div class='col btn' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\"> <%- disp %> </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp}));
+                        var moreClasses = key.moreClasses ? key.moreClasses : '';
+                        var keyEl = angular.element(_.template("<div class='col btn <%- moreClasses %>' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\"> <%- disp %> </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp, moreClasses: moreClasses}));
+                        if ((key.disp == null) && key.icon){
+                            var iconEl = angular.element(_.template("<i class='fa <%- icon %>'></i>", {icon: key.icon}));
+                            $compile(iconEl)($scope);
+                            keyEl.append(iconEl);
+                        }
+
                         $compile(keyEl)($scope);
                         lineEl.append(keyEl);
                     })
@@ -126,6 +134,8 @@ angular.module('editor.module', [])
                         default:
                             console.log("Unrecognized action ", action, value);
                     }
+
+                    return true;
                 };
             }
         }
@@ -187,11 +197,11 @@ angular.module('editor.module', [])
 
                         // Line 4
                         [
-                            {disp: 'SHIFT', value: 'view2', action: 'showView'},
-                            {disp: '123', value: 'view3', action: 'showView'},
-                            {disp: 'SPACE', value: ' ', action: 'data'},
-                            {disp: 'BACKSPACE', value: '\b', action: 'data'},
-                            {disp: 'ENTER', value: '\n', action: 'data'}
+                            {disp: null, value: 'view2', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus",moreClasses: "action"},
+                            {disp: 'space', value: ' ', action: 'data'},
+                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle",  moreClasses: "action"},
+                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
                         ]
                     ],
 
@@ -241,11 +251,11 @@ angular.module('editor.module', [])
 
                         // Line 4
                         [
-                            {disp: 'SHIFT', value: 'view1', action: 'showView'},
-                            {disp: '123', value: 'view3', action: 'showView'},
-                            {disp: 'SPACE', value: ' ', action: 'data'},
-                            {disp: 'BACKSPACE', value: '\b', action: 'data'},
-                            {disp: 'ENTER', value: '\n', action: 'data'}
+                            {disp: null, value: 'view1', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus", moreClasses: "action"},
+                            {disp: 'space', value: ' ', action: 'data'},
+                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle", moreClasses: "action"},
+                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
                         ]
                     ],
 
@@ -293,11 +303,11 @@ angular.module('editor.module', [])
 
                         // Line 4
                         [
-                            {disp: 'SHIFT', value: 'view1', action: 'showView'},
-                            {disp: '123', value: 'view3', action: 'showView'},
-                            {disp: 'SPACE', value: ' ', action: 'data'},
-                            {disp: 'BACKSPACE', value: '\b', action: 'data'},
-                            {disp: 'ENTER', value: '\n', action: 'data'}
+                            {disp: null, value: 'view1', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus", moreClasses: "action"},
+                            {disp: 'space', value: ' ', action: 'data'},
+                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle", moreClasses: "action"},
+                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
                         ]
                     ]
                 }

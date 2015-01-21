@@ -63,6 +63,12 @@
     height: 100%;
 }
 
+
+.keyboard-view .row:nth-child(2){
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
 .btn {
     cursor: pointer;
     background-color: #cfcdd1;
@@ -75,12 +81,22 @@
     font-size: 16px;
     font-weight: 500;
     margin: 5px;
-    max-width: 80px;
+    /*max-width: 80px;*/
+    max-height: 30px;
+    text-overflow: ellipsis;
+    overflow: hidden;
 }
 
-.btn:last-child, .btn:first-child {
-    max-width: 100%
+.btn.action {
+    background-color: #666;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 50px;
 }
+
+/*.btn:last-child, .btn:first-child {*/
+    /*max-width: 100%*/
+/*}*/
 
 .content > .scroll {
     height: 100%;
