@@ -48,13 +48,21 @@ angular.module('editor.module', [])
 
     .controller('EditorTestViewController', ['$scope', '$http', function($scope, $http){
 
-        $scope.code = "import json\nobj = json.loa";
+        $scope.editor = {};
+        $scope.editor.code = "import json\nobj = json.loa";
+
+        $scope.editor.options = {
+            lineWrapping : true,
+            lineNumbers: true,
+//            readOnly: 'nocursor',
+            mode: 'python',
+        };
 
         $scope.view = 1;
 
         $scope.keyboardHandler = function(char){
             console.log("Handler called " , char);
-            $scope.code += char;
+            $scope.editor.code += char;
         }
 
     }])

@@ -6,6 +6,7 @@
 // 'starter.controllers' is found in controllers.js
 angular.module('superlime', [
     'ionic',
+    'ui.codemirror',
     'common.module',
     'login.module',
     'config.module',

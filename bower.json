@@ -10,12 +10,14 @@
     "fontawesome": "~4.2.0",
     "github-api": "~0.10.3",
     "querystring": "~3.46.1"
-
   },
   "resolutions": {
     "angular-ui-router": "0.2.13",
     "codemirror": "~4.11.0",
     "collide": "1.0.0-beta.3",
     "querystring": "~3.46.1"
+  },
+  "dependencies": {
+    "angular-ui-codemirror": "~0.2.2"
   }
 }

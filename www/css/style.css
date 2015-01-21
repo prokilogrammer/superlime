@@ -44,6 +44,11 @@
     height: 100%
 }
 
+.CodeMirror {
+    flex: 1;
+    -webkit-flex: 1;
+}
+
 .codearea {
     flex: 1;
     -webkit-flex: 1;

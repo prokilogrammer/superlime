@@ -9,7 +9,8 @@
     <ion-content scroll="false">
 
         <div class="flex">
-            <textarea readonly placeholder="Type your code here" class="codearea" ng-model="code"> </textarea>
+            <!--<textarea readonly placeholder="Type your code here" class="codearea" ng-model="code"> </textarea>-->
+            <ui-codemirror class="codearea" ng-model="editor.code" ui-codemirror-opts="editor.options"></ui-codemirror>
 
 
             <keyboard type="default" handler="keyboardHandler(char)"></keyboard>
