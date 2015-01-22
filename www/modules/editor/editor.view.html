@@ -1,8 +1,8 @@
-<ion-nav-bar class="bar-energized nav-title-slide-ios7">
-    <ion-nav-back-button class="button-clear">
-        <i class="ion-arrow-left-c"></i> Back
-    </ion-nav-back-button>
-</ion-nav-bar>
+<!--<ion-nav-bar class="bar-energized nav-title-slide-ios7">-->
+    <!--<ion-nav-back-button class="button-clear">-->
+        <!--<i class="ion-arrow-left-c"></i> Back-->
+    <!--</ion-nav-back-button>-->
+<!--</ion-nav-bar>-->
 
 <ion-view title="{{repoName}} : {{ path }}">
 
@@ -10,7 +10,7 @@
 
         <div class="flex">
             <!--<textarea readonly placeholder="Type your code here" class="codearea" ng-model="code"> </textarea>-->
-            <ui-codemirror class="codearea" ng-model="editor.code" ui-codemirror-opts="editor.options"></ui-codemirror>
+            <div ui-codemirror="{onLoad: onCMLoaded}" class="codearea" ng-model="editor.code" ui-codemirror-opts="editor.options" ></div>
 
 
             <keyboard type="default" handler="keyboardHandler(char)"></keyboard>

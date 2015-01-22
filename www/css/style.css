@@ -47,6 +47,7 @@
 .CodeMirror {
     flex: 1;
     -webkit-flex: 1;
+    height: auto;
 }
 
 .codearea {
@@ -55,12 +56,13 @@
     font-size: 20px;
     font-family: "Times New Roman";
     font-weight: 300;
+    overflow: scroll;
 }
 
-.keyboard {
-    flex: 0 0 30%;
-    -webkit-flex: 0 0 30%;
-}
+/*.keyboard {*/
+    /*flex: 0 0 30%;*/
+    /*-webkit-flex: 0 0 30%;*/
+/*}*/
 
 .keyboard-view {
     flex: 1;

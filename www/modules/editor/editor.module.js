@@ -56,6 +56,13 @@ angular.module('editor.module', [])
             lineNumbers: true,
 //            readOnly: 'nocursor',
             mode: 'python',
+            readOnly: true
+        };
+
+        $scope.onCMLoaded = function(cm){
+
+            document.cm = cm;
+
         };
 
         $scope.view = 1;
