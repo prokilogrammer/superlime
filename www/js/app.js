@@ -29,6 +29,12 @@ angular.module('superlime', [
 
 .config(function($stateProvider, $urlRouterProvider, $sceDelegateProvider) {
 
+
+    // Never show native keyboard
+    window.addEventListener('native.keyboardshow', function(e){
+        cordova.plugins.Keyboard.close();
+    });
+
     $sceDelegateProvider.resourceUrlWhitelist(['self', 'https://oauth.io/**', 'https://api.github.com/**', 'https://www.github.com/**']);
 
 

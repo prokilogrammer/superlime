@@ -62,7 +62,6 @@ angular.module('editor.module', [])
         $scope.onCMLoaded = function(cm){
 
             document.cm = cm;
-
         };
 
         $scope.keyboardHandler = function(char){
