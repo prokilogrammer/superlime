@@ -101,7 +101,7 @@ angular.module('editor.module', [])
                         var moreClasses = key.moreClasses ? key.moreClasses : '';
                         var keyEl = angular.element(_.template("<div class='col btn <%- moreClasses %>' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\"> <%- disp %> </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp, moreClasses: moreClasses}));
                         if ((key.disp == null) && key.icon){
-                            var iconEl = angular.element(_.template("<i class='fa <%- icon %>'></i>", {icon: key.icon}));
+                            var iconEl = angular.element(_.template("<i class='<%- icon %>'></i>", {icon: key.icon}));
                             keyEl.append(iconEl);
                         }
 
