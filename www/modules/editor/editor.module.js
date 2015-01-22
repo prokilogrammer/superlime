@@ -65,8 +65,6 @@ angular.module('editor.module', [])
 
         };
 
-        $scope.view = 1;
-
         $scope.keyboardHandler = function(char){
             console.log("Handler called " , char);
             $scope.editor.code += char;
@@ -105,14 +103,11 @@ angular.module('editor.module', [])
                         var keyEl = angular.element(_.template("<div class='col btn <%- moreClasses %>' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\"> <%- disp %> </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp, moreClasses: moreClasses}));
                         if ((key.disp == null) && key.icon){
                             var iconEl = angular.element(_.template("<i class='fa <%- icon %>'></i>", {icon: key.icon}));
-                            $compile(iconEl)($scope);
                             keyEl.append(iconEl);
                         }
 
-                        $compile(keyEl)($scope);
                         lineEl.append(keyEl);
                     })
-                    $compile(lineEl)($scope);
                     viewEl.append(lineEl);
                 });
 
