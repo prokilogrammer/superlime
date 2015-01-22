@@ -187,11 +187,11 @@ angular.module('editor.module', [])
                         {disp: 'j', value: 'j', action: 'data'},
                         {disp: 'k', value: 'k', action: 'data'},
                         {disp: 'l', value: 'l', action: 'data'},
-                        {disp: ';', value: ';', action: 'data'}
                         ],
 
                         // Line 3
                         [
+                        {disp: null, value: '\t', action: 'data', icon: "ionicons ion-arrow-swap", moreClasses: "action"},
                         {disp: 'z', value: 'z', action: 'data'},
                         {disp: 'x', value: 'x', action: 'data'},
                         {disp: 'c', value: 'c', action: 'data'},
@@ -199,18 +199,17 @@ angular.module('editor.module', [])
                         {disp: 'b', value: 'b', action: 'data'},
                         {disp: 'n', value: 'n', action: 'data'},
                         {disp: 'm', value: 'm', action: 'data'},
-                        {disp: ',', value: ',', action: 'data'},
-                        {disp: '.', value: '.', action: 'data'},
-                        {disp: '/', value: '/', action: 'data'}
+                        {disp: null, value: '\b', action: 'data', icon: "ionicons ion-backspace-outline",  moreClasses: "action"},
                         ],
 
                         // Line 4
                         [
-                            {disp: null, value: 'view2', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus",moreClasses: "action"},
-                            {disp: 'space', value: ' ', action: 'data'},
-                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle",  moreClasses: "action"},
-                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
+                            
+                            {disp: null, value: 'view2', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
+                            {disp: 'space', value: ' ', action: 'data', moreClasses: "action"}
+                            {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
                         ]
                     ],
 
@@ -241,11 +240,11 @@ angular.module('editor.module', [])
                         {disp: 'J', value: 'J', action: 'data'},
                         {disp: 'K', value: 'K', action: 'data'},
                         {disp: 'L', value: 'L', action: 'data'},
-                        {disp: ':', value: ':', action: 'data'}
                         ],
 
                         // Line 3
                         [
+                        {disp: null, value: '\t', action: 'data', icon: "ionicons ion-arrow-swap", moreClasses: "action"},
                         {disp: 'Z', value: 'Z', action: 'data'},
                         {disp: 'X', value: 'X', action: 'data'},
                         {disp: 'C', value: 'C', action: 'data'},
@@ -253,18 +252,16 @@ angular.module('editor.module', [])
                         {disp: 'B', value: 'B', action: 'data'},
                         {disp: 'N', value: 'N', action: 'data'},
                         {disp: 'M', value: 'M', action: 'data'},
-                        {disp: '<', value: '<', action: 'data'},
-                        {disp: '>', value: '>', action: 'data'},
-                        {disp: '?', value: '?', action: 'data'}
-                        ],
+                        {disp: null, value: '\b', action: 'data', icon: "ionicons ion-backspace-outline",  moreClasses: "action"},
+                                                ],
 
                         // Line 4
                         [
-                            {disp: null, value: 'view1', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus", moreClasses: "action"},
-                            {disp: 'space', value: ' ', action: 'data'},
-                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle", moreClasses: "action"},
-                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
+                            {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-up", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
+                            {disp: 'space', value: ' ', action: 'data', moreClasses: "action"}
+                            {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
                         ]
                     ],
 
@@ -285,39 +282,119 @@ angular.module('editor.module', [])
 
                         // Line 2
                         [
-                        {disp: '-', value: '-', action: 'data'},
-                        {disp: '_', value: '_', action: 'data'},
-                        {disp: '{', value: '}', action: 'data'},
-                        {disp: '$', value: '$', action: 'data'},
-                        {disp: '@', value: '@', action: 'data'},
+                        {disp: '(', value: '(', action: 'data'},
+                        {disp: ')', value: ')', action: 'data'},
+                        {disp: '[', value: '[', action: 'data'},
+                        {disp: ']', value: ']', action: 'data'},
                         {disp: '"', value: '"', action: 'data'},
                         {disp: '\'', value: '\'', action: 'data'},
-                        {disp: '!', value: '!', action: 'data'},
-                        {disp: '[', value: ']', action: 'data'},
-                        {disp: '%', value: '%', action: 'data'}
+                        {disp: ':', value: ':', action: 'data'},
+                        {disp: '=', value: '=', action: 'data'},
+                        {disp: '.', value: '.', action: 'data'},
                         ],
 
                         // Line 3
                         [
-                        {disp: '*', value: '*', action: 'data'},
-                        {disp: '^', value: '^', action: 'data'},
+                        {disp: null, value: '\t', action: 'data', icon: "ionicons ion-arrow-swap", moreClasses: "action"},
                         {disp: '+', value: '+', action: 'data'},
+                        {disp: '-', value: '-', action: 'data'},
+                        {disp: '*', value: '*', action: 'data'},
                         {disp: '/', value: '/', action: 'data'},
-                        {disp: '=', value: '=', action: 'data'},
-                        {disp: '|', value: '|', action: 'data'},
                         {disp: '#', value: '#', action: 'data'},
-                        {disp: '`', value: '`', action: 'data'},
-                        {disp: '&', value: '&', action: 'data'}
+                        {disp: ',', value: ',', action: 'data'},
+                        {disp: '_', value: '_', action: 'data'},
+                        {disp: null, value: '\b', action: 'data', icon: "ionicons ion-backspace-outline",  moreClasses: "action"},
                         ],
 
                         // Line 4
                         [
-                            {disp: null, value: 'view1', action: 'showView', icon: "fa-arrow-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "fa-bus", moreClasses: "action"},
-                            {disp: 'space', value: ' ', action: 'data'},
-                            {disp: null, value: '\b', action: 'data', icon: "fa-bicycle", moreClasses: "action"},
-                            {disp: null, value: '\n', action: 'data', icon: "fa-birthday-cake", moreClasses: "action"}
-                        ]
+                        {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
+                        {disp: null, value: 'view3.2', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                        {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
+                        {disp: 'space', value: ' ', action: 'data', moreClasses: "action"}
+                        {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}    
+                    ],
+
+                    'view3.2': [
+                        // Line 1
+                        [
+                        {disp: '1', value: 1, action: 'data'},
+                        {disp: '2', value: 2, action: 'data'},
+                        {disp: '3', value: 3, action: 'data'},
+                        {disp: '4', value: 4, action: 'data'},
+                        {disp: '5', value: 5, action: 'data'},
+                        {disp: '6', value: 6, action: 'data'},
+                        {disp: '7', value: 7, action: 'data'},
+                        {disp: '8', value: 8, action: 'data'},
+                        {disp: '9', value: 9, action: 'data'},
+                        {disp: '0', value: 0, action: 'data'}
+                        ],
+
+                        // Line 2
+                        [
+                        {disp: '~', value: '~', action: 'data'},
+                        {disp: '`', value: '`', action: 'data'},
+                        {disp: '!', value: '!', action: 'data'},
+                        {disp: '@', value: '@', action: 'data'},
+                        {disp: '$', value: '$', action: 'data'},
+                        {disp: '%', value: '%', action: 'data'},
+                        {disp: '^', value: '^', action: 'data'},
+                        {disp: '{', value: '{', action: 'data'},
+                        {disp: '}', value: '}', action: 'data'},
+                        ],
+
+                        // Line 3
+                        [
+                        {disp: null, value: '\t', action: 'data', icon: "ionicons ion-arrow-swap", moreClasses: "action"},
+                        {disp: '&', value: '&', action: 'data'},
+                        {disp: '|', value: '|', action: 'data'},
+                        {disp: '\\', value: '\\', action: 'data'},
+                        {disp: ';', value: ';', action: 'data'},
+                        {disp: '<', value: '<', action: 'data'},
+                        {disp: '>', value: '>', action: 'data'},
+                        {disp: '?', value: '?', action: 'data'},
+                        {disp: null, value: '\b', action: 'data', icon: "ionicons ion-backspace-outline",  moreClasses: "action"},
+                        ],
+
+                        // Line 4
+                        [
+                        {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
+                        {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                        {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
+                        {disp: 'space', value: ' ', action: 'data', moreClasses: "action"}
+                        {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}    
+                    ],
+
+                    'view4': [
+                        // Line 1
+                        [
+                        {disp: 'if', value: 'if', action: 'data'},
+                        {disp: 'else', value: 'else', action: 'data'},
+                        {disp: 'elif', value: 'elif', action: 'data'},
+                        ],
+
+                        // Line 2
+                        [
+                        {disp: 'while', value: 'while', action: 'data'},
+                        {disp: 'for', value: 'for', action: 'data'},
+                        {disp: 'break', value: 'break', action: 'data'},
+                        ],
+
+                        // Line 3
+                        [
+                        {disp: null, value: '\t', action: 'data', icon: "ionicons ion-arrow-swap", moreClasses: "action"},
+                        {disp: 'def', value: 'def', action: 'data'},
+                        {disp: 'return', value: 'return', action: 'data'},
+                        {disp: null, value: '\b', action: 'data', icon: "ionicons ion-backspace-outline",  moreClasses: "action"},
+                        ],
+
+                        // Line 4
+                        [
+                        {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
+                        {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                        {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
+                        {disp: 'space', value: ' ', action: 'data', moreClasses: "action"}
+                        {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}    
                     ]
                 }
             }
