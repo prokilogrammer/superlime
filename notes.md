@@ -12,6 +12,8 @@
 
 - [_Code Mirror_](http://codemirror.net/): Similar to ACE. Seems to work better than ACE on mobile. Still there are many bugs which the maintainer hasn't fixed.
 
+- [_HighlightJS_](https://highlightjs.org/): Not a code editor, but just syntax highlighter with themes. Can be used for making my own code editor if I want.
+
 ## Custom Keyboard:
 ### Off-the-shelf
 
