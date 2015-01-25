@@ -91,7 +91,7 @@
     font-size: 24px;
     font-weight: bolder;
     margin: 2px;
-    min-height: 45px;
+    min-height: 40px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: flex;
@@ -107,6 +107,10 @@
     -webkit-box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
     -moz-box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
     box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
+}
+
+.small {
+    font-size: 20px;
 }
 
 .btn:active {
