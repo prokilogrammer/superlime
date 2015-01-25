@@ -56,7 +56,8 @@ angular.module('editor.module', [])
             lineNumbers: true,
 //            readOnly: 'nocursor',
             mode: 'python',
-            readOnly: true
+            readOnly: true,
+            theme: 'ambiance'
         };
 
         $scope.onCMLoaded = function(cm){
@@ -99,10 +100,14 @@ angular.module('editor.module', [])
                     var lineEl = angular.element('<div class="row"></div>');
                     _.forEach(line, function(key){
                         var moreClasses = key.moreClasses ? key.moreClasses : '';
-                        var keyEl = angular.element(_.template("<div class='col btn <%- moreClasses %>' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\"> <%- disp %> </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp, moreClasses: moreClasses}));
+                        var keyEl = angular.element(_.template("<div class='col btn <%- moreClasses %>' ng-click=\"clicked(\'<%- action %>\', \'<%- value %>\')\">  </div>", {action: quoted(key.action), value: quoted(key.value), disp: key.disp, moreClasses: moreClasses}));
                         if ((key.disp == null) && key.icon){
                             var iconEl = angular.element(_.template("<i class='<%- icon %>'></i>", {icon: key.icon}));
                             keyEl.append(iconEl);
+                        }
+                        else {
+                            var txtEl = angular.element(_.template("<span class='middle'><%- disp %></span>", {disp: key.disp}));
+                            keyEl.append(txtEl);
                         }
 
                         lineEl.append(keyEl);
@@ -204,7 +209,7 @@ angular.module('editor.module', [])
                         [
                             
                             {disp: null, value: 'view2', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios-infinite", moreClasses: "action"},
                             {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
                             {disp: 'space', value: ' ', action: 'data'},
                             {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
@@ -256,7 +261,7 @@ angular.module('editor.module', [])
                         // Line 4
                         [
                             {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios-infinite", moreClasses: "action"},
                             {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
                             {disp: 'space', value: ' ', action: 'data'},
                             {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
@@ -307,7 +312,7 @@ angular.module('editor.module', [])
                         // Line 4
                         [
                             {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
-                            {disp: null, value: 'view3.2', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: null, value: 'view3.2', action: 'showView', icon: "ionicons ion-ios-infinite", moreClasses: "action"},
                             {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
                             {disp: 'space', value: ' ', action: 'data'},
                             {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
@@ -358,7 +363,7 @@ angular.module('editor.module', [])
                         // Line 4
                         [
                             {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios-infinite", moreClasses: "action"},
                             {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
                             {disp: 'space', value: ' ', action: 'data'},
                             {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}
@@ -391,7 +396,7 @@ angular.module('editor.module', [])
                         // Line 4
                         [
                             {disp: null, value: 'view1', action: 'showView', icon: "fa fa-arrow-circle-o-up", moreClasses: "action"},
-                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios7-infinite", moreClasses: "action"},
+                            {disp: null, value: 'view3', action: 'showView', icon: "ionicons ion-ios-infinite", moreClasses: "action"},
                             {disp: 'syn', value: 'view4', action: 'showView', moreClasses: "action"},
                             {disp: 'space', value: ' ', action: 'data'},
                             {disp: null, value: '\n', action: 'data', icon: "fa fa-arrow-left", moreClasses: "action"}

@@ -68,8 +68,12 @@
     flex: 1;
     -webkit-flex: 1;
     height: 100%;
+    background: black;
 }
 
+.keyboard-view .row{
+    margin-bottom: 10px;
+}
 
 .keyboard-view .row:nth-child(2){
     padding-left: 15px;
@@ -78,27 +82,57 @@
 
 .btn {
     cursor: pointer;
-    background-color: #cfcdd1;
+    background-color: #4B4B4B;
     text-align: center;
-    vertical-align: top;
-    display: inline-block;
-    color: black;
+    color: white;
     padding: 5px;
-    border: 2px solid #8e8e8e;
-    font-size: 16px;
-    font-weight: 500;
-    margin: 5px;
-    /*max-width: 80px;*/
-    max-height: 30px;
+    /*border: 1px solid #8e8e8e;*/
+    font-size: 24px;
+    font-weight: bolder;
+    margin: 2px;
+    min-height: 45px;
     text-overflow: ellipsis;
     overflow: hidden;
+    display: flex;
+    align-items: center;
+    -webkit-align-items: center;
+    justify-content: center;
+    -webkit-justify-content: center;
+
+    border-radius: 4px 4px 4px 4px;
+    -moz-border-radius: 4px 4px 4px 4px;
+    -webkit-border-radius: 4px 4px 4px 4px;
+
+    -webkit-box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
+    -moz-box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
+    box-shadow: 1px -2px 0px -1px rgba(255,255,255,0.50);
 }
 
+.btn:active {
+    background-color: black;
+    color: white;
+}
+
+
 .btn.action {
-    background-color: #666;
+    background-color: #191919;
     padding-left: 10px;
     padding-right: 10px;
     max-width: 50px;
+    margin-right: 8px;
+}
+
+/* Place a left margin when an action button follows a normal character button*/
+.btn:not(.action) + .btn.action {
+    margin-left: 8px;
+}
+
+.btn.action:first-child{
+    margin-left: 0px;
+}
+
+.btn.action:last-child{
+    margin-right: 0px;
 }
 
 /*.btn:last-child, .btn:first-child {*/
