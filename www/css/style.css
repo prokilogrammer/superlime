@@ -57,6 +57,7 @@
     font-family: "Times New Roman";
     font-weight: 300;
     overflow: scroll;
+    background: black;
 }
 
 /*.keyboard {*/
@@ -109,13 +110,19 @@
 }
 
 .btn:active {
-    background-color: black;
+    background-color: #717171;
+    color: white;
+}
+
+
+.btn.action:active {
+    background-color: #717171;
     color: white;
 }
 
 
 .btn.action {
-    background-color: #191919;
+    background-color: #292929;
     padding-left: 10px;
     padding-right: 10px;
     max-width: 50px;
