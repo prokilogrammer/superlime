@@ -41,7 +41,8 @@
     display: -webkit-flex;
     flex-direction: column;
     -webkit-flex-direction: column;
-    height: 100%
+    height: 100%;
+    background: black;
 }
 
 .CodeMirror {
@@ -57,7 +58,7 @@
     font-family: "Times New Roman";
     font-weight: 300;
     overflow: scroll;
-    background: black;
+    background: transparent;
 }
 
 /*.keyboard {*/
@@ -91,7 +92,7 @@
     font-size: 24px;
     font-weight: bolder;
     margin: 2px;
-    max-height: 45px;
+    max-height: 50px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: flex;
@@ -147,9 +148,22 @@
     margin-right: 0px;
 }
 
-/*.btn:last-child, .btn:first-child {*/
-    /*max-width: 100%*/
-/*}*/
+.autocomplete {
+    background: transparent;
+    overflow-x: scroll;
+    overflow-y: hidden;
+    width: auto;
+    white-space: nowrap;
+    min-width: 0px;
+    max-height: 50px;
+}
+
+.autocomplete > .button {
+    min-width: -webkit-min-content;
+    overflow-x: visible;
+    color: white;
+    font-size: 16px;
+}
 
 .content > .scroll {
     height: 100%;
