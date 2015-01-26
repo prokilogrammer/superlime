@@ -113,13 +113,14 @@
     font-size: 20px;
 }
 
-.btn:active {
+/* .activated is a class added by Ionic when we click on an element */
+.btn.activated {
     background-color: #717171;
     color: white;
 }
 
 
-.btn.action:active {
+.btn.action.activated {
     background-color: #717171;
     color: white;
 }
