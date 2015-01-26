@@ -91,7 +91,7 @@
     font-size: 24px;
     font-weight: bolder;
     margin: 2px;
-    min-height: 40px;
+    max-height: 45px;
     text-overflow: ellipsis;
     overflow: hidden;
     display: flex;
@@ -113,6 +113,14 @@
     font-size: 20px;
 }
 
+
+.btn.action {
+    background-color: #292929;
+    padding-left: 10px;
+    padding-right: 10px;
+    max-width: 50px;
+    margin-right: 8px;
+}
 /* .activated is a class added by Ionic when we click on an element */
 .btn.activated {
     background-color: #717171;
@@ -125,14 +133,6 @@
     color: white;
 }
 
-
-.btn.action {
-    background-color: #292929;
-    padding-left: 10px;
-    padding-right: 10px;
-    max-width: 50px;
-    margin-right: 8px;
-}
 
 /* Place a left margin when an action button follows a normal character button*/
 .btn:not(.action) + .btn.action {
