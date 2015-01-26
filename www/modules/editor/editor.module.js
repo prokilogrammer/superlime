@@ -58,35 +58,58 @@ angular.module('editor.module', [])
 //            readOnly: 'nocursor',
             mode: 'python',
             readOnly: true,
-            theme: 'ambiance'
+            autofocus: true,
+            theme: 'ambiance',
+            cursorScrollMargin: 1
         };
 
         $scope.onCMLoaded = function(cm){
 
-            document.cm = cm;
+            $scope.editor.cm = cm;
+
+            // Set the cursor to last character
+
+            // Get suggestions when the code changes.
+            cm.on('change', function(editor, change){
+                AutocompleteFactory.getSuggestions(editor.getValue(), function(err, suggestions){
+                     if (err) return console.log(err);
+                     $scope.suggest = suggestions;
+                });
+            });
+
+            cm.on('cursorActivity', function(editor){
+                console.log('cursor activity', editor.getCursor());
+            })
+
+            cm.on('scrollCursorIntoView', function(editor, event){
+                console.log('scrollCursorIntoView ', event);
+            });
         };
 
         $scope.suggest = [];
 
-        // Get suggestions when the code changes.
-        $scope.$watch('editor.code', function(newValue, oldValue){
-             AutocompleteFactory.getSuggestions(newValue, function(err, suggestions){
-                 if (err) return console.log(err);
-                 $scope.suggest = suggestions;
-             });
-        });
-
         $scope.addToCode = function(suggestion){
-            $scope.editor.code += suggestion.complete;
+            addToEditor(suggestion.complete);
         }
 
         $scope.keyboardHandler = function(char){
+            addToEditor(char);
+        }
+
+        var addToEditor = function(char){
+            var replacement = '';
+            var end = null;
+            var currentCursor = $scope.editor.cm.getCursor();
             if (char == '\b'){
-               $scope.editor.code = $scope.editor.code.substr(0, $scope.editor.code.length-1);
+                replacement = '';
+                // Find new position got by moving cursor one char to left
+                end = $scope.editor.cm.findPosH(currentCursor, -1, 'char');
             }
             else {
-                $scope.editor.code += char;
+                replacement = char;
             }
+
+            $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), end);
         }
 
     }])
