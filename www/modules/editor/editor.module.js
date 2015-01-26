@@ -63,6 +63,15 @@ angular.module('editor.module', [])
             cursorScrollMargin: 1
         };
 
+        var getSuggestions = function(editor){
+            // Get autocomplete suggestions for word at current cursor position.
+            var str = editor.getRange({line: 0, ch: 0}, editor.getCursor());
+            AutocompleteFactory.getSuggestions(str, function(err, suggestions){
+                 if (err) return console.log(err);
+                 $scope.suggest = suggestions;
+            });
+        }
+
         $scope.onCMLoaded = function(cm){
 
             $scope.editor.cm = cm;
@@ -71,15 +80,12 @@ angular.module('editor.module', [])
 
             // Get suggestions when the code changes.
             cm.on('change', function(editor, change){
-                AutocompleteFactory.getSuggestions(editor.getValue(), function(err, suggestions){
-                     if (err) return console.log(err);
-                     $scope.suggest = suggestions;
-                });
+                getSuggestions(editor);
             });
 
             cm.on('cursorActivity', function(editor){
-                console.log('cursor activity', editor.getCursor());
-            })
+                getSuggestions(editor);
+            });
 
             cm.on('scrollCursorIntoView', function(editor, event){
                 console.log('scrollCursorIntoView ', event);
@@ -89,6 +95,7 @@ angular.module('editor.module', [])
         $scope.suggest = [];
 
         $scope.addToCode = function(suggestion){
+            // FIXME: Replace current word with autocomplete suggestion. Use cm.findPosH(currnet, 1, 'word') to find end pos of word and replace using cm.replaceRange()
             addToEditor(suggestion.complete);
         }
 
@@ -96,20 +103,23 @@ angular.module('editor.module', [])
             addToEditor(char);
         }
 
-        var addToEditor = function(char){
-            var replacement = '';
-            var end = null;
-            var currentCursor = $scope.editor.cm.getCursor();
+        var addToEditor = function(char, noEditorFocus){
+            var replacement = char;
+            var endPos = null;
+            var currentPos = $scope.editor.cm.getCursor();
             if (char == '\b'){
                 replacement = '';
                 // Find new position got by moving cursor one char to left
-                end = $scope.editor.cm.findPosH(currentCursor, -1, 'char');
-            }
-            else {
-                replacement = char;
+                endPos = $scope.editor.cm.findPosH(currentPos, -1, 'char');
             }
 
-            $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), end);
+            $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), endPos);
+            if (!noEditorFocus) {
+                // FIXME: Don't like this too much. It might cause performance/usability issues.
+                _.delay(function(){
+                    $scope.editor.cm.focus();
+                }, 750);
+            }
         }
 
     }])

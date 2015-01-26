@@ -12,7 +12,6 @@
             <!--<textarea readonly placeholder="Type your code here" class="codearea" ng-model="code"> </textarea>-->
             <div ui-codemirror="{onLoad: onCMLoaded}" class="codearea" ng-model="editor.code" ui-codemirror-opts="editor.options" ></div>
 
-
             <div class="row autocomplete">
                 <button class="col button button-dark" ng-repeat="s in suggest track by $index" ng-click="addToCode(s)" ng-show="s.complete">
                     {{ s.name }}
