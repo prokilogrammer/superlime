@@ -161,6 +161,26 @@ angular.module('editor.module', [])
 
     }])
 
+    .factory('AutocompleteFactory', ['$http', function($http){
+        var url = "http://superlime-jedi.herokuapp.com/suggest?";
+
+        var factory = {};
+
+        factory.getSuggestions = function(code, cb){
+
+            $http.get(url + querystring.stringify({code: code}))
+                .success(function(data){
+                    cb(null, data);
+                })
+                .error(function(err){
+                    cb(err);
+                })
+        };
+
+        return factory;
+
+    }])
+
     .factory('KeymapFactory', ['$http', function($http){
 
         var maps = {
