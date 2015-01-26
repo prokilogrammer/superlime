@@ -46,7 +46,8 @@ angular.module('editor.module', [])
 
     }])
 
-    .controller('EditorTestViewController', ['$scope', '$http', function($scope, $http){
+    .controller('EditorTestViewController', ['$scope', '$http', 'AutocompleteFactory',
+        function($scope, $http, AutocompleteFactory){
 
         $scope.editor = {};
         $scope.editor.code = "import json\nobj = json.loa";
@@ -64,6 +65,20 @@ angular.module('editor.module', [])
 
             document.cm = cm;
         };
+
+        $scope.suggest = [];
+
+        // Get suggestions when the code changes.
+        $scope.$watch('editor.code', function(newValue, oldValue){
+             AutocompleteFactory.getSuggestions(newValue, function(err, suggestions){
+                 if (err) return console.log(err);
+                 $scope.suggest = suggestions;
+             });
+        });
+
+        $scope.addToCode = function(suggestion){
+            $scope.editor.code += suggestion.complete;
+        }
 
         $scope.keyboardHandler = function(char){
             if (char == '\b'){
