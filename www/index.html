@@ -22,6 +22,7 @@
 
     <script type="text/javascript" src="lib/codemirror-4.11/lib/codemirror.js"></script>
     <script type="text/javascript" src="lib/codemirror-4.11/mode/python/python.js"></script>
+    <script type="text/javascript" src="lib/codemirror-4.11/mode/javascript/javascript.js"></script>
     <script type="text/javascript" src="lib/angular-ui-codemirror/ui-codemirror.js"></script>
 
     <script src="lib/querystring/querystring.js"></script>
@@ -51,6 +52,7 @@
           ionic.Platform.ready(function(){
               var OAuthIoPublicKey = "c3YzgYib6SdcN21TzMKw2sAOwow";
               OAuth.initialize(OAuthIoPublicKey);
+              console.log(" platform ready. init oauth");
           })
       </script>
 

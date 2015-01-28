@@ -1,22 +1,25 @@
 angular.module('editor.module', [])
 
-    .controller('EditorViewController', ['$scope', 'GithubService', 'user', 'reponame', 'path', function($scope, GithubService, user, reponame, path){
+    .controller('EditorViewController', ['$scope', '$http', 'reponame', 'path', 'user', 'AutocompleteFactory', 'GithubService',
+        function($scope, $http, reponame, path, user, AutocompleteFactory, GithubService){
+
+        $scope.editor = {};
+        $scope.editor.code = "Loading..";
 
         $scope.repoName = reponame;
         $scope.path = path;
 
-
         var defaultBranch = 'master';
         GithubService.getFileContents(user, reponame, defaultBranch, path)
             .then(function(data){
-                $scope.code = data;
+                $scope.editor.code = data;
             });
 
         var getMode = function(path){
             var modeMap = {
-                '.js': 'ace/mode/javascript',
-                '.py': 'ace/mode/python',
-                'default': 'ace/mode/text'
+                '.js': 'javascript',
+                '.py': 'python',
+                'default': 'text'
             };
 
             var match = path.match(/\.[^.]+$/);
@@ -28,35 +31,10 @@ angular.module('editor.module', [])
             }
         };
 
-        $scope.editorLoaded = function(_editor){
-
-            var mode = getMode(path);
-            console.log("Setting mode to: " + mode);
-            _editor.getSession().setMode(mode);
-            _editor.setTheme('ace/theme/twilight');
-
-            console.log('Editor loaded');
-        };
-
-
-        $scope.editorChanged = function(_editor){
-
-            console.log('Editor changed');
-        }
-
-    }])
-
-    .controller('EditorTestViewController', ['$scope', '$http', 'AutocompleteFactory',
-        function($scope, $http, AutocompleteFactory){
-
-        $scope.editor = {};
-        $scope.editor.code = "import json\nobj = json.loa";
-
         $scope.editor.options = {
             lineWrapping : true,
             lineNumbers: true,
-//            readOnly: 'nocursor',
-            mode: 'python',
+            mode: getMode(path),
             readOnly: true,
             autofocus: true,
             theme: 'ambiance',
@@ -97,11 +75,11 @@ angular.module('editor.module', [])
         $scope.addToCode = function(suggestion){
             // FIXME: Replace current word with autocomplete suggestion. Use cm.findPosH(currnet, 1, 'word') to find end pos of word and replace using cm.replaceRange()
             addToEditor(suggestion.complete);
-        };
+        }
 
         $scope.keyboardHandler = function(char){
             addToEditor(char);
-        };
+        }
 
         var addToEditor = function(char, noEditorFocus){
             var replacement = char;
@@ -115,7 +93,7 @@ angular.module('editor.module', [])
 
             $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), endPos);
 //            if (!noEditorFocus) {
-                // FIXME: Don't like this too much. It might cause performance/usability issues.
+//                // FIXME: Don't like this too much. It might cause performance/usability issues.
 //                _.delay(function(){
 //                    $scope.editor.cm.focus();
 //                }, 750);
