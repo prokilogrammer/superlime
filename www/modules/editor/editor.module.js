@@ -97,11 +97,11 @@ angular.module('editor.module', [])
         $scope.addToCode = function(suggestion){
             // FIXME: Replace current word with autocomplete suggestion. Use cm.findPosH(currnet, 1, 'word') to find end pos of word and replace using cm.replaceRange()
             addToEditor(suggestion.complete);
-        }
+        };
 
         $scope.keyboardHandler = function(char){
             addToEditor(char);
-        }
+        };
 
         var addToEditor = function(char, noEditorFocus){
             var replacement = char;
@@ -114,12 +114,12 @@ angular.module('editor.module', [])
             }
 
             $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), endPos);
-            if (!noEditorFocus) {
+//            if (!noEditorFocus) {
                 // FIXME: Don't like this too much. It might cause performance/usability issues.
-                _.delay(function(){
-                    $scope.editor.cm.focus();
-                }, 750);
-            }
+//                _.delay(function(){
+//                    $scope.editor.cm.focus();
+//                }, 750);
+//            }
         }
 
     }])
