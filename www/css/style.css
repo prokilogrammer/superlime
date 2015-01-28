@@ -48,7 +48,6 @@
 .CodeMirror {
     flex: 1;
     -webkit-flex: 1;
-    height: auto;
 }
 
 .codearea {
@@ -156,6 +155,9 @@
     white-space: nowrap;
     min-width: 0px;
     max-height: 50px;
+    min-height: 0px;
+    flex: 1;
+    -webkit-flex: 1;
 }
 
 .autocomplete > .button {

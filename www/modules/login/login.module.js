@@ -46,7 +46,8 @@ angular.module('login.module', [])
         var createUser = function(providerName, authedClient, deferred){
 
             user = {
-                access_token: authedClient.access_token
+                access_token: authedClient.access_token,
+                provider: providerName
             };
 
             console.log(authedClient.access_token);

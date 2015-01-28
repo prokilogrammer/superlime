@@ -1,7 +1,7 @@
 angular.module('editor.module', [])
 
-    .controller('EditorViewController', ['$scope', '$http', 'reponame', 'path', 'user', 'AutocompleteFactory', 'GithubService',
-        function($scope, $http, reponame, path, user, AutocompleteFactory, GithubService){
+    .controller('EditorViewController', ['$scope', '$http', 'reponame', 'path', 'user', 'AutocompleteFactory', 'GithubService', 'StorageService',
+        function($scope, $http, reponame, path, user, AutocompleteFactory, GithubService, StorageService){
 
         $scope.editor = {};
         $scope.editor.code = "Loading..";
@@ -65,9 +65,8 @@ angular.module('editor.module', [])
                 getSuggestions(editor);
             });
 
-            cm.on('scrollCursorIntoView', function(editor, event){
-                console.log('scrollCursorIntoView ', event);
-            });
+//            cm.on('scrollCursorIntoView', function(editor, event){
+//            });
         };
 
         $scope.suggest = [];
@@ -92,12 +91,12 @@ angular.module('editor.module', [])
             }
 
             $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), endPos);
-//            if (!noEditorFocus) {
-//                // FIXME: Don't like this too much. It might cause performance/usability issues.
-//                _.delay(function(){
-//                    $scope.editor.cm.focus();
-//                }, 750);
-//            }
+            if (!noEditorFocus) {
+                // FIXME: Don't like this too much. It might cause performance/usability issues.
+                _.delay(function(){
+                    $scope.editor.cm.focus();
+                }, 750);
+            }
         }
 
     }])
