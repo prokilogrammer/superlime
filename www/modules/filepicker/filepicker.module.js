@@ -1,11 +1,15 @@
 angular.module('filepicker.module', [])
 
-.controller('FilePickerRepoController', ['$scope', '$state', 'GithubService', 'user', 'orgname', function($scope, $state, GithubService, user, selectedOrg){
+.controller('FilePickerRepoController', ['$scope', '$state', 'GithubService', 'ContentService', 'user', 'orgname', function($scope, $state, GithubService, ContentService, user, selectedOrg){
 
+        var defaultBranch = 'master';
         $scope.selectedOrg = selectedOrg;
 
         GithubService.getRepos(user, selectedOrg)
             .then(function(repos){
+                _.forEach(repos, function(repo){
+                    repo.hasLocalChanges = ContentService.hasLocalChanges(user, repo.name, defaultBranch, '');
+                });
                 $scope.repos = repos;
             });
 
@@ -17,8 +21,8 @@ angular.module('filepicker.module', [])
 
     }])
 
-.controller('FilePickerFileController', ['$scope', '$state', 'GithubService', 'user', 'reponame', 'path',
-        function($scope, $state, GithubService, user, reponame, path){
+.controller('FilePickerFileController', ['$scope', '$state', 'GithubService', 'ContentService', 'user', 'reponame', 'path',
+        function($scope, $state, GithubService, ContentService, user, reponame, path){
 
             $scope.repoName = reponame;
             $scope.path = path;
@@ -43,7 +47,8 @@ angular.module('filepicker.module', [])
                             name: item.name,
                             path: item.path,
                             sref: sref,
-                            folder: (item.type == 'dir')
+                            folder: (item.type == 'dir'),
+                            hasLocalChanges: ContentService.hasLocalChanges(user, reponame, defaultBranch, item.path)
                         });
                     });
                 })

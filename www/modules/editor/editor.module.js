@@ -1,7 +1,7 @@
 angular.module('editor.module', [])
 
-    .controller('EditorViewController', ['$scope', '$http', 'reponame', 'path', 'user', 'AutocompleteFactory', 'GithubService', 'StorageService',
-        function($scope, $http, reponame, path, user, AutocompleteFactory, GithubService, StorageService){
+    .controller('EditorViewController', ['$scope', '$http', 'reponame', 'path', 'user', 'AutocompleteFactory', 'GithubService', 'ContentService',
+        function($scope, $http, reponame, path, user, AutocompleteFactory, GithubService, ContentService){
 
         $scope.editor = {};
         $scope.editor.code = "Loading..";
@@ -10,7 +10,7 @@ angular.module('editor.module', [])
         $scope.path = path;
 
         var defaultBranch = 'master';
-        GithubService.getFileContents(user, reponame, defaultBranch, path)
+        ContentService.getContents(user, reponame, defaultBranch, path, 'file')
             .then(function(data){
                 $scope.editor.code = data;
             });
@@ -91,6 +91,9 @@ angular.module('editor.module', [])
             }
 
             $scope.editor.cm.replaceRange(replacement, $scope.editor.cm.getCursor(), endPos);
+
+            ContentService.saveLocally(user, reponame, defaultBranch, path, $scope.editor.cm.getValue());
+
             if (!noEditorFocus) {
                 // FIXME: Don't like this too much. It might cause performance/usability issues.
                 _.delay(function(){

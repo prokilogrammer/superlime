@@ -5,7 +5,7 @@
         <ion-list ng-show="dirContents.length > 0">
             <ion-item ng-repeat="item in dirContents" ui-sref="{{ item.sref }}">
                 <i class="icon" ng-class="item.folder ? 'ion-folder' : 'ion-document'"></i>
-                {{ item.name }}
+                {{ item.name }} {{item.hasLocalChanges ? '*' : ''}}
             </ion-item>
         </ion-list>
 

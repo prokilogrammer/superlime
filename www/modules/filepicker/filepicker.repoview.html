@@ -5,7 +5,7 @@
 
         <ion-list>
             <ion-item ng-repeat="repo in repos" ui-sref="user.home.filepicker({reponame: repo.name})">
-                {{ repo.name }}
+                {{ repo.name }} {{repo.hasLocalChanges ? '*' : ''}}
             </ion-item>
 
         </ion-list>
