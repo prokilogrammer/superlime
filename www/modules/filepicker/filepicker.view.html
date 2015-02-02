@@ -4,4 +4,14 @@
     </ion-nav-back-button>
 </ion-nav-bar>
 
+<script id="templates/popover.html" type="text/ng-template">
+    <ion-popover-view>
+        <ion-content>
+            <div class="list">
+                <a class="item" ng-click="closePopover()" ui-sref="user.commit.filelist({reponame: repoName})"> Commit </a>
+            </div>
+        </ion-content>
+    </ion-popover-view>
+</script>
+
 <ion-nav-view></ion-nav-view>

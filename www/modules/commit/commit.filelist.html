@@ -1,0 +1,31 @@
+<ion-view title="Commit to {{reponame}}">
+
+    <ion-nav-buttons side="right">
+        <button class="button button-icon ionicons ion-home" ui-sref="user.home.repopicker">
+        </button>
+    </ion-nav-buttons>
+
+    <ion-content>
+
+        <div class="list" ng-show="changes.length == 0">
+            No outstanding changes to commit
+        </div>
+
+        <div class="list" ng-show="changes.length > 0">
+
+            <label class="item item-input">
+                <input type="text" placeholder="Commit message">
+            </label>
+
+
+            <label class="item item-input">
+                <textarea rows="5" placeholder="Commit description"></textarea>
+            </label>
+
+            <ion-checkbox ng-click="toggleStageAll()" ng-model="stageAll" class="item item-divider"><b>Select all</b></ion-checkbox>
+            <ion-checkbox ng-repeat="change in changes" ng-model="change.staged" class="item"> {{change.path}}</ion-checkbox>
+        </div>
+
+    </ion-content>
+
+</ion-view>

@@ -93,7 +93,12 @@ angular.module('common.module', [])
         var factory = {};
 
         var fileKey = function(user, repo, branch, path){
+            path = path ? path : '';
             return _.template("<%- repo %>/<%- branch %>@<%- user %>_<%- provider %>:<%- path %>", {user: user.username, provider: user.provider, repo: repo, branch: branch, path: path});
+        };
+
+        var originalKey = function(key){
+            return "original_" + key;
         };
 
         factory.getContents = function(user, repo, branch, path, type){
@@ -108,7 +113,16 @@ angular.module('common.module', [])
             }
 
             if (type == 'file'){
-                return GithubService.getFileContents(user, repo, branch, path);
+                GithubService.getFileContents(user, repo, branch, path)
+                    .then(function(contents){
+                        // Store original
+                        saveLocally(user, repo, branch, path, contents, true);
+                        deferred.resolve(contents);
+                    })
+                    .catch(function(err){
+                        deferred.reject(err);
+                    });
+                return deferred.promise;
             }
             else if (type == 'dir'){
                 return GithubService.getRepoContents(user, repo, branch, path);
@@ -119,20 +133,48 @@ angular.module('common.module', [])
             }
         };
 
-        factory.saveLocally = function(user, repo, branch, path, contents){
+        factory.getOriginalContent = function(user, repo, branch, path){
+            var key = originalKey(fileKey(user, repo, branch, path));
+            return $window.localStorage[key];
+        };
+
+        var saveLocally = function(user, repo, branch, path, contents, original){
             var key = fileKey(user, repo, branch, path);
+            if (original){
+                key = originalKey(key);
+            }
+
             $window.localStorage[key] = contents;
         };
 
-        factory.hasLocalChanges = function(user, repo, branch, path){
+        factory.saveLocally = function(user, repo, branch, path, contents){
+            saveLocally(user, repo, branch, path, contents, false);
+        };
+
+        factory.getLocalChanges = function(user, repo, branch, path){
+            // Returns list of modified files as file paths relative to the given path
 
             var queryKey = fileKey(user, repo, branch, path);
-            console.log(queryKey);
 
+            var localChanges = [];
             var fileKeys = _.keys($window.localStorage);
-            return _.any(fileKeys, function(key){
-                return key.indexOf(queryKey) > -1;
-            })
+            _.forEach(fileKeys, function(key){
+                var re = new RegExp("\\b" + queryKey);
+                if (re.test(key)){
+                    // Replace key substring to get path relative to given path.
+                    localChanges.push({
+                        path: key.replace(re, ''),
+                        content: $window.localStorage[key],
+                        original: $window.localStorage[originalKey(key)]
+                    })
+                }
+            });
+
+            return localChanges;
+        };
+
+        factory.hasLocalChanges = function(user, repo, branch, path){
+            return this.getLocalChanges(user, repo, branch, path).length > 0;
         };
 
         return factory;

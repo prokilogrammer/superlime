@@ -1,6 +1,7 @@
 angular.module('filepicker.module', [])
 
-.controller('FilePickerRepoController', ['$scope', '$state', 'GithubService', 'ContentService', 'user', 'orgname', function($scope, $state, GithubService, ContentService, user, selectedOrg){
+.controller('FilePickerRepoController', ['$scope', '$state', 'GithubService', 'ContentService', 'user', 'orgname',
+        function($scope, $state, GithubService, ContentService, user, selectedOrg){
 
         var defaultBranch = 'master';
         $scope.selectedOrg = selectedOrg;
@@ -19,10 +20,12 @@ angular.module('filepicker.module', [])
                 $scope.orgs = _.pluck(orgs, 'login');
             });
 
+        $scope.noPopover = true;
+
     }])
 
-.controller('FilePickerFileController', ['$scope', '$state', 'GithubService', 'ContentService', 'user', 'reponame', 'path',
-        function($scope, $state, GithubService, ContentService, user, reponame, path){
+.controller('FilePickerFileController', ['$scope', '$state', '$ionicPopover', 'GithubService', 'ContentService', 'user', 'reponame', 'path',
+        function($scope, $state, $ionicPopover, GithubService, ContentService, user, reponame, path){
 
             $scope.repoName = reponame;
             $scope.path = path;
@@ -51,6 +54,25 @@ angular.module('filepicker.module', [])
                             hasLocalChanges: ContentService.hasLocalChanges(user, reponame, defaultBranch, item.path)
                         });
                     });
-                })
+                });
 
-        }])
+                $ionicPopover.fromTemplateUrl('templates/popover.html', {
+                    scope: $scope
+                }).then(function(popover) {
+                    $scope.popover = popover;
+                }).catch(function(err){
+                    console.error(err);
+                });
+
+                $scope.openPopover = function($event) {
+                    $scope.popover.show($event);
+                };
+                $scope.closePopover = function() {
+                    $scope.popover.hide();
+                };
+                //Cleanup the popover when we're done with it!
+                $scope.$on('$destroy', function() {
+                    $scope.popover.remove();
+                });
+
+        }]);

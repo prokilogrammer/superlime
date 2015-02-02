@@ -11,7 +11,8 @@ angular.module('superlime', [
     'login.module',
     'config.module',
     'filepicker.module',
-    'editor.module'])
+    'editor.module',
+    'commit.module'])
 
 .run(function($ionicPlatform) {
   $ionicPlatform.ready(function() {
@@ -112,6 +113,30 @@ angular.module('superlime', [
               }
         })
 
+
+        .state('user.commit', {
+              abstract: true,
+              url: "/commit",
+              templateUrl: "modules/commit/commit.view.html",
+              resolve: {
+                // If user had to login fresh, user object inherited from parent scope will be null. Refresh it.
+                user: ['LoginService', function(LoginService){
+                    return LoginService.getUser();
+                }]
+              }
+        })
+
+
+        .state('user.commit.filelist', {
+              url: "/commit/:reponame",
+              templateUrl: "modules/commit/commit.filelist.html",
+              controller: "CommitFileListController",
+              resolve: {
+                  reponame: ['$stateParams', function($stateParams){
+                    return $stateParams.reponame ? $stateParams.reponame : '';
+                  }]
+              }
+        });
 
 //        .state('editortest', {
 //              url: "/editortest",
